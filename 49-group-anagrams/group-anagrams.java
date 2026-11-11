@@ -6,11 +6,13 @@ class Solution {
 
         for (String s : strs) {
 
-            char[] arr = s.toCharArray();
+            int[] count = new int[26];
 
-            Arrays.sort(arr);
+            for (char c : s.toCharArray()) {
+                count[c - 'a']++;
+            }
 
-            String key = new String(arr);
+            String key = Arrays.toString(count);
 
             map.putIfAbsent(key, new ArrayList<>());
 
