@@ -8,17 +8,21 @@ class Solution {
 
             int[] count = new int[26];
 
-            for (char c : s.toCharArray()) {
-                count[c - 'a']++;
+            for (int i = 0; i < s.length(); i++) {
+                count[s.charAt(i) - 'a']++;
             }
 
-            String key = Arrays.toString(count);
+            StringBuilder key = new StringBuilder();
 
-            map.putIfAbsent(key, new ArrayList<>());
+            for (int n : count) {
+                key.append('#').append(n);
+            }
 
-            map.get(key).add(s);
+            map.computeIfAbsent(key.toString(), k -> new ArrayList<>())
+               .add(s);
         }
 
         return new ArrayList<>(map.values());
     }
 }
+
